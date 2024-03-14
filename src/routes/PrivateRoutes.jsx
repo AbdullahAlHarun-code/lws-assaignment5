@@ -1,21 +1,33 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-
+import Header from "../commons/Header";
+import ProfileProvider from "../providers/ProfileProvider";
+import Footer from "../commons/Footer";
 
 const PrivateRoutes = () => {
-    const { auth } = useAuth();
+  const { auth } = useAuth();
 
-    return (
+  return (
+    <>
+      {auth.user ? (
         <>
-            {auth.user ? (
-                <>
-                    <Outlet />
-                </>
-            ) : (
-                <Navigate to="/login" />
-            )}
+          <ProfileProvider>
+            <Header />
+            <main>
+              <section>
+                <div className="container">
+                  <Outlet />
+                </div>
+              </section>
+            </main>
+            <Footer />
+          </ProfileProvider>
         </>
-    );
+      ) : (
+        <Navigate to="/login" />
+      )}
+    </>
+  );
 };
 
 export default PrivateRoutes;

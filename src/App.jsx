@@ -7,6 +7,7 @@ import Register from './pages/Register'
 import NotFoundPage from './pages/NotFoundPage'
 import Profile from './pages/Profile'
 import PrivateRoutes from './routes/PrivateRoutes'
+import SingleBlog from './pages/SingleBlog'
 function App() {
 
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route element={<PrivateRoutes />}>
           <Route element={<Home />} path="/"/>
           <Route element={<Profile />} path="/profile"/>
+          <Route element={<SingleBlog />} path="/single-blog/:blogId"/>
         </Route>
         
         <Route element={<Login />} path="/login"/>
